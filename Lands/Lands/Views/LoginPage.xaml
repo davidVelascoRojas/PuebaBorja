@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Lands.Views.LoginPage"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Title="Login">
+    
+    <ContentPage.Content>
+        <ScrollView
+            BindingContext="{Binding Login}">
+            <StackLayout
+                Padding="5">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    Text="LA BORJA">
+                </Label>
+
+                <Image
+                    Source="icon"
+                    WidthRequest="200">
+                </Image>
+
+                <Grid
+                    Margin="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Agente"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Text="{Binding Agente, Mode=TwoWay}"
+                        Placeholder="Ingresa tu usuario">
+                    </Entry>
+                    
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Text="Password"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        IsPassword="True"
+                        Text="{Binding Password, Mode=TwoWay}"
+                        Placeholder="Ingresa tu Password">
+                    </Entry>
+
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Text="Servidor"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Text="{Binding Servidor, Mode=TwoWay}"
+                        Placeholder="Ingresa tu servidor">
+                    </Entry>
+                </Grid>
+
+                <ActivityIndicator
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="CenterAndExpand">
+                </ActivityIndicator>
+                
+                <StackLayout
+                    Orientation="Horizontal"
+                    VerticalOptions="CenterAndExpand">
+                    <Label
+                        HorizontalOptions="StartAndExpand"
+                        FontSize="Medium"
+                        Text="Recordarme?"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Switch
+                        IsToggled="{Binding IsRemembered, Mode=TwoWay}"
+                        HorizontalOptions="End">
+                    </Switch>
+                </StackLayout>
+
+                <StackLayout
+                    Margin="50,10">
+                    <Button
+                        BackgroundColor="Navy"
+                        BorderRadius="40"
+                        Command="{Binding LoginCommand}"
+                        HeightRequest="80"
+                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                        Text="Ingresar"
+                        TextColor="White">
+                    </Button>
+                </StackLayout>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+    

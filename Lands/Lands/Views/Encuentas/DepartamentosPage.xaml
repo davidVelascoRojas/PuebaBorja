@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Lands.Views.Encuentas.DepartamentosPage"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Title="Departamentos">
+    
+    <ContentPage.Content>
+
+
+        <StackLayout
+            BindingContext="{Binding Departamentos}"
+            Padding="1">
+            <ListView
+                BackgroundColor="Silver"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                ItemsSource="{Binding Departamentos}"
+                SeparatorVisibility="None"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                CornerRadius="20"
+                                HasShadow="True"
+                                Margin="5">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectDepartamentoCommand}"/>
+                                </Frame.GestureRecognizers>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                        Grid.Column="0"
+                                        VerticalOptions="Center"
+                                        Spacing="0">
+                                        <Label Text="{Binding Descripcion}" TextColor="Black" FontSize="Medium"/>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <Label Text="{Binding ClaveDep}" TextColor="Black" FontSize="Micro"/>
+                                            <Label Text="{Binding ClaveSuc}" TextColor="Black" FontSize="Micro"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Image
+                                        Grid.Column="1"
+                                        HorizontalOptions="End"
+                                        Source="icon">
+                                    </Image>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        
+    </ContentPage.Content>
+
+</ContentPage>

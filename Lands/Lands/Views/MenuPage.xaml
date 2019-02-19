@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Lands.Views.MenuPage"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    BackgroundColor="Silver"
+    Icon="ic_MenuDesplegable"
+    Title="Menu">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="10">
+            <Image
+                Source="icon"
+                Aspect="AspectFit">
+            </Image>
+            <ListView
+                BackgroundColor="Silver"
+                ItemsSource="{Binding Menus}"
+                HasUnevenRows="True"
+                SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                CornerRadius="5"
+                                HasShadow="True"
+                                Margin="1">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateCommand}"/>
+                                </Frame.GestureRecognizers>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image
+                                        Source="{Binding Icon}"
+                                        Aspect="AspectFit">
+                                    </Image>
+                                    <Label
+                                        Grid.Column="1"
+                                        VerticalOptions="Center"
+                                        TextColor="YellowGreen"
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        Text="{Binding Title}">
+                                    </Label>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

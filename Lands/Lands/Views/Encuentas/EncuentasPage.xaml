@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Lands.Views.Encuentas.EncuentasPage"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Title="Encuesta">
+    
+    <ContentPage.Content>
+
+
+
+
+        <StackLayout
+            BindingContext="{Binding Encuestas}"
+            Padding="1">
+            <ListView
+                BackgroundColor="Silver"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                ItemsSource="{Binding Encuestas}"
+                SeparatorVisibility="None"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                CornerRadius="20"
+                                HasShadow="True"
+                                Margin="5">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectEncuestaCommand}"/>
+                                </Frame.GestureRecognizers>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                        Grid.Column="0"
+                                        VerticalOptions="Center"
+                                        Spacing="0">
+                                        <Label Text="{Binding Descripcion}" TextColor="Black" FontSize="Medium"/>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <Label Text="NO  /  SI" TextColor="Black" FontSize="Medium" HorizontalOptions="Center"/>
+                                            <Switch
+                                                IsToggled="{Binding Respuesta, Mode=TwoWay}"
+                                                HorizontalOptions="Center">
+                                            </Switch>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout
+                Margin="50,10">
+                <Button
+                    BackgroundColor="Navy"
+                    BorderRadius="40"
+                    Command="{Binding GuardarCommand}"
+                    HeightRequest="80"
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                    Text="Guardar"
+                    TextColor="White">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+
+
+
+
+    </ContentPage.Content>
+</ContentPage>
